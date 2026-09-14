@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowUpRight, ArrowDown, Code2, Layers3, Database, Terminal, Network, Wrench, Mail, Phone, Menu, X, ArrowUp, GraduationCap } from 'lucide-react';
+import { ArrowUpRight, ArrowDown, Code2, Layers3, Database, Terminal, Network, Wrench, Mail, Phone, Menu, X, ArrowUp, GraduationCap, Github, ExternalLink } from 'lucide-react';
 
 const skills = [
   { number: '01', name: 'Web development', description: 'Responsive, user-friendly interfaces built to last.', icon: Code2, tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'] },
@@ -10,6 +10,12 @@ const skills = [
   { number: '04', name: 'API integration', description: 'Connecting frontend and backend over HTTP.', icon: Network, tags: ['RESTful APIs', 'GET', 'POST', 'PUT', 'DELETE'] },
   { number: '05', name: 'UI/UX design', description: 'Translating designs into accessible interfaces.', icon: Layers3, tags: ['UI/UX Principles', 'Accessibility', 'Design Translation'] },
   { number: '06', name: 'IT support & systems', description: 'Troubleshooting, maintenance, and documentation.', icon: Wrench, tags: ['Troubleshooting', 'Technical Maintenance', 'Documentation'] },
+];
+
+const projects = [
+  { number: '01', title: 'Storefront Commerce', description: 'A responsive e-commerce storefront with cart, checkout, and product filtering built for small businesses.', tags: ['Next.js', 'TypeScript', 'Stripe'], github: '#', live: '#' },
+  { number: '02', title: 'TaskFlow', description: 'A lightweight task and project tracker with drag-and-drop boards and team collaboration.', tags: ['React', 'Node.js', 'PostgreSQL'], github: '#', live: '#' },
+  { number: '03', title: 'Portfolio CMS', description: 'A headless content system letting freelancers manage and publish portfolio case studies without touching code.', tags: ['Python', 'REST API', 'SQL'], github: '#', live: '#' },
 ];
 
 const experience = [
@@ -28,6 +34,7 @@ export default function Home() {
         <nav className={menuOpen ? 'nav open' : 'nav'} aria-label="Main navigation">
           <a href="#about" onClick={() => setMenuOpen(false)}>About me</a>
           <a href="#skills" onClick={() => setMenuOpen(false)}>My toolkit</a>
+          <a href="#projects" onClick={() => setMenuOpen(false)}>Projects</a>
           <a href="#experience" onClick={() => setMenuOpen(false)}>Experience</a>
         </nav>
         <a className="header-cta" href="#about">Meet Charles <ArrowUpRight size={17}/></a>
@@ -67,8 +74,14 @@ export default function Home() {
           <div className="skills-grid">{skills.map(({number, name, description, icon: Icon, tags}) => <article className="skill-card" key={number}><div className="card-top"><div className="skill-icon"><Icon size={23} strokeWidth={1.5}/></div><span>{number}</span></div><h3>{name}</h3><p>{description}</p><div className="tags">{tags.map(tag => <span key={tag}>{tag}</span>)}</div></article>)}</div>
         </section>
 
+        <section className="projects section" id="projects">
+          <div className="section-label"><span className="orange-square"/>03 / PROJECTS</div>
+          <div className="section-heading"><h2>Things I’ve <span className="serif">built.</span></h2><p>A few projects that show how I think,<br/>design, and ship.</p></div>
+          <div className="projects-grid">{projects.map(({number, title, description, tags, github, live}) => <article className="project-card" key={number}><div className="project-media"><span>{number}</span><div className="project-links"><a href={github} aria-label={`${title} on GitHub`}><Github size={15}/></a><a href={live} aria-label={`${title} live site`}><ExternalLink size={15}/></a></div></div><div className="project-body"><h3>{title}</h3><p>{description}</p><div className="tags">{tags.map(tag => <span key={tag}>{tag}</span>)}</div></div></article>)}</div>
+        </section>
+
         <section className="experience section" id="experience">
-          <div className="section-label"><span className="orange-square"/>03 / EXPERIENCE</div>
+          <div className="section-label"><span className="orange-square"/>04 / EXPERIENCE</div>
           <div className="section-heading"><h2>Hands-on <span className="serif">in the field.</span></h2><p>Real projects, real teams,<br/>real problem-solving.</p></div>
           <div className="experience-list">{experience.map(({role, company, duration, description}) => <article className="experience-item" key={role}><div className="experience-top"><h3>{role}</h3><span className="experience-duration">{duration}</span></div><div className="experience-company">{company}</div><p>{description}</p></article>)}</div>
         </section>

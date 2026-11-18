@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { ArrowUpRight, ArrowDown, Code2, Layers3, Database, Terminal, Network, Wrench, Mail, Phone, Menu, X, ArrowUp, GraduationCap, Download } from 'lucide-react';
 
 const skills = [
@@ -13,8 +14,8 @@ const skills = [
 ];
 
 const projects = [
-  { number: '01', name: 'ZedPredictor', role: 'Designed & developed', url: 'https://www.zedpredictor.com/', domain: 'zedpredictor.com', description: 'A football prediction and analytics platform for fans in Zambia, with daily tips and confidence ratings, match analysis, live scores, fixtures, standings, and a public record of past predictions across the FAZ Super Division and major European leagues.', tags: ['UI/UX Design', 'Web Development', 'API Integration', 'Sports Data'] },
-  { number: '02', name: 'Firstlight Mama Network', role: 'Designed & developed', url: 'https://firstlightmamanet.org/', domain: 'firstlightmamanet.org', description: 'The website for a faith-based community supporting mothers through pregnancy, postpartum, and early motherhood, with programs, mentorship and support requests, volunteer and partner sign-ups, events, stories, donations, and a newsletter.', tags: ['UI/UX Design', 'Web Development', 'Responsive Design', 'Non-profit'] },
+  { number: '01', name: 'ZedPredictor', role: 'Designed & developed', url: 'https://www.zedpredictor.com/', domain: 'zedpredictor.com', image: '/projects/zedpredictor.png', description: 'A football prediction and analytics platform for fans in Zambia, with daily tips and confidence ratings, match analysis, live scores, fixtures, standings, and a public record of past predictions across the FAZ Super Division and major European leagues.', tags: ['UI/UX Design', 'Web Development', 'API Integration', 'Sports Data'] },
+  { number: '02', name: 'Firstlight Mama Network', role: 'Designed & developed', url: 'https://firstlightmamanet.org/', domain: 'firstlightmamanet.org', image: '/projects/firstlight-mama-network.png', description: 'The website for a faith-based community supporting mothers through pregnancy, postpartum, and early motherhood, with programs, mentorship and support requests, volunteer and partner sign-ups, events, stories, donations, and a newsletter.', tags: ['UI/UX Design', 'Web Development', 'Responsive Design', 'Non-profit'] },
 ];
 
 const experience = [
@@ -76,9 +77,9 @@ export default function Home() {
         <section className="projects section" id="projects">
           <div className="section-label"><span className="orange-square"/>03 / PROJECTS</div>
           <div className="section-heading"><h2>Selected <span className="serif">work.</span></h2><p>Products I’ve designed and built,<br/>live and in use.</p></div>
-          <div className="projects-list">{projects.map(({number, name, role, url, domain, description, tags}) => (
+          <div className="projects-list">{projects.map(({number, name, role, url, domain, image, description, tags}) => (
             <a className="project-card" key={name} href={url} target="_blank" rel="noopener noreferrer" aria-label={`${name}: visit ${domain} (opens in a new tab)`}>
-              <div className="project-visual" aria-hidden="true"><span className="project-number">{number}</span><span className="project-wordmark">{name}<span>.</span></span><span className="project-domain">{domain}</span></div>
+              <div className={image ? 'project-visual has-image' : 'project-visual'}>{image ? <Image src={image} alt={`Screenshot of the ${name} homepage`} fill sizes="(max-width: 760px) 100vw, 42vw" className="project-image"/> : <><span className="project-number" aria-hidden="true">{number}</span><span className="project-wordmark" aria-hidden="true">{name}<span>.</span></span><span className="project-domain" aria-hidden="true">{domain}</span></>}</div>
               <div className="project-body">
                 <div className="project-role">{role}</div>
                 <h3>{name}</h3>
